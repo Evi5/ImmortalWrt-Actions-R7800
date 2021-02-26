@@ -98,7 +98,7 @@ EOF
 
 # Passwall插件
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-passwall is not set #
+CONFIG_PACKAGE_luci-app-passwall=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Server is not set
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR=y
