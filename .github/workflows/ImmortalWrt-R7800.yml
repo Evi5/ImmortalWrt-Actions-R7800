@@ -62,15 +62,6 @@ jobs:
           echo "Free space:"
           df -h
 
-      - name: free disk space
-        run: | 
-          sudo swapoff -a
-          sudo rm -f /swapfile
-          sudo apt clean
-          docker rmi $(docker image ls -aq)
-          echo "Free space:"
-          df -h
-
       # 初始化编译环境
       - name: Initialization environment
         env:
