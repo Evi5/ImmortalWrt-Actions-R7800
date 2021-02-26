@@ -69,6 +69,7 @@ EOF
 
 # smaba4支持
 cat >> .config <<EOF
+CONFIG_PACKAGE_luci-app-samba=n
 CONFIG_PACKAGE_luci-app-samba4=y
 CONFIG_PACKAGE_samba4-server=y
 CONFIG_PACKAGE_luci-i18n-samba4-zh-cn=y
@@ -335,12 +336,12 @@ EOF
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-theme-Butterfly=y
 CONFIG_PACKAGE_luci-theme-Butterfly-dark=y
-CONFIG_PACKAGE_luci-theme-argon=y
-CONFIG_PACKAGE_luci-theme-argon-dark-mod=y
-CONFIG_PACKAGE_luci-theme-argon-light-mod=y
-CONFIG_PACKAGE_luci-theme-argon-mc=y
-CONFIG_PACKAGE_luci-theme-argon-mod=y
-CONFIG_PACKAGE_luci-theme-argonv2=y
+# CONFIG_PACKAGE_luci-theme-argon=y
+# CONFIG_PACKAGE_luci-theme-argon-dark-mod=y
+# CONFIG_PACKAGE_luci-theme-argon-light-mod=y
+# CONFIG_PACKAGE_luci-theme-argon-mc=y
+# CONFIG_PACKAGE_luci-theme-argon-mod=y
+# CONFIG_PACKAGE_luci-theme-argonv2=y
 CONFIG_PACKAGE_luci-theme-argonv3=y
 CONFIG_PACKAGE_luci-theme-atmaterial=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
@@ -349,7 +350,7 @@ CONFIG_PACKAGE_luci-theme-darkmatter=y
 CONFIG_PACKAGE_luci-theme-edge=y
 CONFIG_PACKAGE_luci-theme-infinityfreedom=y
 CONFIG_PACKAGE_luci-theme-material=y
-CONFIG_PACKAGE_luci-theme-netgear=y
+# CONFIG_PACKAGE_luci-theme-netgear=y
 CONFIG_PACKAGE_luci-theme-netgearv2=y
 CONFIG_PACKAGE_luci-theme-opentomato=y
 CONFIG_PACKAGE_luci-theme-opentomcat=y
