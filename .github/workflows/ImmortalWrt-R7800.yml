@@ -20,7 +20,7 @@ env:
   # 分支
   REPO_BRANCH: openwrt-18.06
   # 脚本
-  DIY_SH: immortalwrt-R7800.sh
+  DIY_SH: ImmortalWrt-R7800.sh
   # 上传分支
   UPLOAD_BRANCH: true
   # 分支
@@ -60,7 +60,6 @@ jobs:
           sudo -E apt-get full-upgrade -y
           sudo -E apt-get install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libreadline-dev libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint ccache curl wget vim nano python python3 python-pip python3-pip python-ply python3-ply haveged lrzsz device-tree-compiler scons antlr3 gperf intltool rsync
 
-
       # 克隆源代码
       - name: Clone source code
         run: |
@@ -73,13 +72,31 @@ jobs:
           ./scripts/feeds clean
           ./scripts/feeds update -a
 
-    # 安装源
+      # 安装源
       - name: Install Feeds
         working-directory: ./immortalwrt
         run:  ./scripts/feeds install -a
 
+      # 加载自定义配置文件
+      - name: Load Custom Configuration
+        run: |
+          [ -e files ] && mv files immortalwrt/files
+          chmod +x $DIY_SH
+          cd immortalwrt
+          ../$DIY_SH
+          make defconfig
+
+      # 编译固件
+      - name: Compile Firmware
+        working-directory: ./immortalwrt
+        id: compile
+        run: |
+          echo -e "$(nproc) thread compile"
+          make -j$(nproc) || make -j1 V=s
+          echo "::set-output name=status::success"
+
       - name: Start SSH via Ngrok
-        # if: ${{ failure() }}
+        if: ${{ failure() }}
         run: curl -sL https://gist.githubusercontent.com/retyui/7115bb6acf151351a143ec8f96a7c561/raw/7099b9db76729dc5761da72aa8525f632d8875c9/debug-github-actions.sh | bash
         env:
           # After sign up on the https://ngrok.com/
@@ -93,5 +110,74 @@ jobs:
           if: env.SSH_ACTIONS == 'true'
 
       - name: Don't kill instace
-        # if: ${{ failure() }}
+        if: ${{ failure() }}
         run: sleep 1h # Prevent to killing instance after failure
+
+
+      # 上传到分支 By yfdoor
+      - name: Upload Branch
+        env:
+            GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        run: |
+            cd openwrt/bin
+            git init
+            git config user.name $GITHUB_USER_NAME
+            git config user.email $GITHUB_USER_EMAIL
+            git add .
+            git commit -m "Update OpenWrt_"$BRANCH
+            git push --force --quiet https://${{ secrets.RELEASE_TOKEN }}@$GITHUB HEAD:OpenWrt-$BRANCH
+    
+      # 整理文件
+      - name: Organize Files
+        id: organize
+        if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+        run: |
+          mv openwrt/.config openwrt/bin/targets/*/*
+          cd openwrt/bin/targets/*/*
+          rm -rf packages
+          rm -rf *uImage
+          rm -rf *.manifest
+          rm -rf *.seed
+          rm -rf *.buildinfo
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+          echo "::set-output name=status::success"
+    
+      - name: 删除旧的Artifacts	
+        uses: c-hive/gha-remove-artifacts@v1.2.0	
+        with:	
+          age: '1 day'	
+          skip-recent: 3	
+
+      # 生成标签
+      - name: Generate Tag
+        id: tag
+        if: steps.compile.outputs.status == 'success' && env.CREATE_RELEASE == 'true' && !cancelled()
+        run: |
+          echo "RELEASE_TAG=$(TZ=UTC-8 date +"%Y-%m-%d")" >> $GITHUB_ENV
+          echo "::set-output name=status::success"
+    
+      # 发行固件
+      - name: Upload Firmware To Release
+        uses: softprops/action-gh-release@v1
+        if: steps.tag.outputs.status == 'success' && !cancelled()
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        with:
+          name: Netgear ${{ env.BRANCH }} 🚀 | 编译 / ${{ env.RELEASE_TAG }}
+          tag_name: ${{ env.RELEASE_TAG }}
+          body: |            
+              1、固件源码：${{ env.REPO_URL }}
+              -- Build by ${{ env.BUILD_USER }} @ with Github Action on ${{ env.RELEASE_TAG }}
+              当前使用版本:（
+              ${{ env.useVersionInfo }}
+              ${{ github.event.commits[0].message }}
+          files: ${{ env.FIRMWARE }}/*
+
+      - name: 删除旧的Releases
+        uses: dev-drprasad/delete-older-releases@master
+        with:
+          keep_latest: 3
+          delete_tags: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
