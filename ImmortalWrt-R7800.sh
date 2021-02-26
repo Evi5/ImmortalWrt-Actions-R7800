@@ -84,17 +84,17 @@ EOF
 # SSR-Plus插件:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-ssr-plus=y
-#CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun is not set
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
 #CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy is not set
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_Obfs is not set
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_Obfs=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_Plugin is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray is not set
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_Plugin=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
 EOF
 
 # Passwall插件
