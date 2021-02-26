@@ -119,21 +119,21 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         run: |
-            cd openwrt/bin
+            cd immortalwrt/bin
             git init
             git config user.name $GITHUB_USER_NAME
             git config user.email $GITHUB_USER_EMAIL
             git add .
-            git commit -m "Update OpenWrt_"$BRANCH
-            git push --force --quiet https://${{ secrets.RELEASE_TOKEN }}@$GITHUB HEAD:OpenWrt-$BRANCH
+            git commit -m "Update ImmortalWrt"$BRANCH
+            git push --force --quiet https://${{ secrets.RELEASE_TOKEN }}@$GITHUB HEAD:ImmortalWrt-$BRANCH
     
       # 整理文件
       - name: Organize Files
         id: organize
         if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true' && !cancelled()
         run: |
-          mv openwrt/.config openwrt/bin/targets/*/*
-          cd openwrt/bin/targets/*/*
+          mv immortalwrt/.config immortalwrt/bin/targets/*/*
+          cd immortalwrt/bin/targets/*/*
           rm -rf packages
           rm -rf *uImage
           rm -rf *.manifest
