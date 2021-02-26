@@ -1,0 +1,97 @@
+# This is a basic workflow to help you get started with Actions
+
+name: ImmortalWrt-R7800
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: 
+       - master
+  # pull_request:
+  #   branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  # workflow_dispatch:
+
+env:
+  # 源
+  REPO_URL: https://github.com/immortalwrt/immortalwrt
+  # 分支
+  REPO_BRANCH: openwrt-18.06
+  # 脚本
+  DIY_SH: immortalwrt-R7800.sh
+  # 上传分支
+  UPLOAD_BRANCH: true
+  # 分支
+  BRANCH: R7800
+  # Github 用户名
+  GITHUB_USER_NAME: Evi5
+  # Github 邮箱
+  GITHUB_USER_EMAIL: ${{ secrets.EMAIL }}
+  # Github
+  GITHUB: github.com/Evi5/ImmortalWrt-Actions-R7800.git
+  # 上传固件
+  UPLOAD_FIRMWARE: true
+  # 创建+上传发布
+  CREATE_RELEASE: true
+  # 编译者
+  BUILD_USER: Evi5
+  
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # 初始化编译环境
+      - name: Initialization environment
+        env:
+          DEBIAN_FRONTEND: noninteractiv
+        run: |
+          docker rmi $(docker images -q)
+          sudo -E apt-get update -y
+          sudo -E apt-get full-upgrade -y
+          sudo -E apt-get install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libreadline-dev libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint ccache curl wget vim nano python python3 python-pip python3-pip python-ply python3-ply haveged lrzsz device-tree-compiler scons antlr3 gperf intltool rsync
+
+
+      # 克隆源代码
+      - name: Clone source code
+        run: |
+          git clone -b $REPO_BRANCH --single-branch $REPO_URL
+          cd immortalwrt
+
+      - name: Update Feeds
+        working-directory: ./immortalwrt
+        run:  |
+          ./scripts/feeds clean
+          ./scripts/feeds update -a
+
+    # 安装源
+      - name: Install Feeds
+        working-directory: ./immortalwrt
+        run:  ./scripts/feeds install -a
+
+      - name: Start SSH via Ngrok
+        # if: ${{ failure() }}
+        run: curl -sL https://gist.githubusercontent.com/retyui/7115bb6acf151351a143ec8f96a7c561/raw/7099b9db76729dc5761da72aa8525f632d8875c9/debug-github-actions.sh | bash
+        env:
+          # After sign up on the https://ngrok.com/
+          # You can find this token here: https://dashboard.ngrok.com/get-started/setup
+          # NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
+          NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
+
+          # This password you will use when authorizing via SSH 
+          # USER_PASS: ${{ secrets.USER_PASS }}
+          USER_PASS: murAmur
+          if: env.SSH_ACTIONS == 'true'
+
+      - name: Don't kill instace
+        # if: ${{ failure() }}
+        run: sleep 1h # Prevent to killing instance after failure
