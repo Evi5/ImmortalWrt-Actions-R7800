@@ -164,7 +164,7 @@ CONFIG_PACKAGE_luci-app-zerotier=y #ZeroTier内网穿透
 CONFIG_PACKAGE_luci-app-accesscontrol=y #访问时间控制
 CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
-CONFIG_PACKAGE_luci-app-netdata=y #Netdata实时监控(图表)
+# CONFIG_PACKAGE_luci-app-netdata=y #Netdata实时监控(图表)
 EOF
 
 # 其它LuCI插件
