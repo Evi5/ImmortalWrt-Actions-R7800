@@ -319,12 +319,12 @@ EOF
 # CONFIG_PACKAGE_luci-app-vnstat is not set #vnStat网络监控（图表）
 # CONFIG_PACKAGE_luci-app-vpn-policy-routing is not set #
 # CONFIG_PACKAGE_luci-app-vpnbypass is not set #
-# CONFIG_PACKAGE_luci-app-vssr is not set #
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Kcptun is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Server is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_V2ray_plugin is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray is not set
+CONFIG_PACKAGE_luci-app-vssr=n  #ssr-plus修改版
+CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Kcptun=n
+CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Server=n
+CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan=n
+CONFIG_PACKAGE_luci-app-vssr_INCLUDE_V2ray_plugin=n
+CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=n
 # CONFIG_PACKAGE_luci-app-watchcat is not set #断网检测功能与定时重启
 # CONFIG_PACKAGE_luci-app-webrestriction is not set #
 # CONFIG_PACKAGE_luci-app-weburl is not set #MAC过滤计划上网重启等
