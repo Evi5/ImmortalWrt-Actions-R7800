@@ -164,7 +164,7 @@ CONFIG_PACKAGE_luci-app-netdata=y #Netdata实时监控(图表)
 EOF
 
 # 其它LuCI插件
-# cat >> .config <<EOF
+cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-acme is not set #ACME，申请SSL证书工具
 # CONFIG_PACKAGE_luci-app-adguardhome is not set #广告屏蔽
 # CONFIG_PACKAGE_luci-app-adguardhome_INCLUDE_binary is not set
@@ -331,8 +331,7 @@ CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=n
 # CONFIG_PACKAGE_luci-app-wifischedule is not set #WiFi 计划
 # CONFIG_PACKAGE_luci-app-wireguard is not set #virtual**服务器 WireGuard状态
 # CONFIG_PACKAGE_luci-app-wol=y #网络唤醒
-
-# EOF
+EOF
 
 # LuCI主题:
 cat >> .config <<EOF
