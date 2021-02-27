@@ -83,6 +83,8 @@ EOF
 
 # SSR-Plus插件:
 cat >> .config <<EOF
+#xray-core中的v2ray与 vrray冲突
+CONFIG_XRAY_CORE_PROVIDE_V2RAY_CORE=n
 CONFIG_PACKAGE_luci-app-ssr-plus=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
 #CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy is not set
