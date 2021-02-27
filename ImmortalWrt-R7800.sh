@@ -46,25 +46,25 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_kmod-fs-nfs-v4=y
 # CONFIG_PACKAGE_kmod-fs-ntfs=y
 # CONFIG_PACKAGE_kmod-fs-squashfs=y
-CONFIG_PACKAGE_kmod-fs-ext4=y
+# CONFIG_PACKAGE_kmod-fs-ext4=y
 EOF
 
 # USB3.0支持:
 cat >> .config <<EOF
-CONFIG_PACKAGE_kmod-usb-ohci=y
-CONFIG_PACKAGE_kmod-usb-ohci-pci=y
-CONFIG_PACKAGE_kmod-usb2=y
-CONFIG_PACKAGE_kmod-usb2-pci=y
-CONFIG_PACKAGE_kmod-usb3=y
-CONFIG_PACKAGE_kmod-usb-storage=y
-CONFIG_PACKAGE_kmod-usb-uhci=y
-CONFIG_PACKAGE_kmod-usb-storage-uas=y
-CONFIG_PACKAGE_usbutils=y
-CONFIG_PACKAGE_kmod-usb-storage=y
-CONFIG_PACKAGE_kmod-usb-storage-extras=y
-CONFIG_PACKAGE_kmod-nls-cp437=y
-CONFIG_PACKAGE_kmod-nls-iso8859-1=y
-CONFIG_PACKAGE_block-mount=y
+# CONFIG_PACKAGE_kmod-usb-ohci=y
+# CONFIG_PACKAGE_kmod-usb-ohci-pci=y
+# CONFIG_PACKAGE_kmod-usb2=y
+# CONFIG_PACKAGE_kmod-usb2-pci=y
+# CONFIG_PACKAGE_kmod-usb3=y
+# CONFIG_PACKAGE_kmod-usb-storage=y
+# CONFIG_PACKAGE_kmod-usb-uhci=y
+# CONFIG_PACKAGE_kmod-usb-storage-uas=y
+# CONFIG_PACKAGE_usbutils=y
+# CONFIG_PACKAGE_kmod-usb-storage=y
+# CONFIG_PACKAGE_kmod-usb-storage-extras=y
+# CONFIG_PACKAGE_kmod-nls-cp437=y
+# CONFIG_PACKAGE_kmod-nls-iso8859-1=y
+# CONFIG_PACKAGE_block-mount=y
 EOF
 
 # smaba4支持, luci-app-samba内置与smaba4冲突
@@ -100,70 +100,70 @@ CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_Obfs=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_Plugin=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
 EOF
 
 # Passwall插件
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-passwall=y
+# CONFIG_PACKAGE_luci-app-passwall=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Server is not set
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Server is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray is not set
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_Plus=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_Plus=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_GO is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_NaiveProxy is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun is not set
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_haproxy=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_haproxy=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs=y
 EOF
 
 # 常用LuCI插件
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
-CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
-CONFIG_PACKAGE_luci-app-wrtbwmon=y #实时流量监测
-CONFIG_PACKAGE_luci-app-xlnetacc=y #迅雷快鸟
-CONFIG_PACKAGE_luci-app-turboacc=y #Turbo ACC 网络加速
-CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_flow-offload=y
-CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_bbr-cca=y
-CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_dnsforwarder=y
-CONFIG_PACKAGE_luci-app-arpbind=y #IP/MAC绑定
-CONFIG_PACKAGE_luci-app-jd-dailybonus=y #京东签到服务
-CONFIG_PACKAGE_luci-app-adblock=y #ADB广告过滤
-CONFIG_PACKAGE_luci-app-baidupcs-web=y #百度网盘管理
-CONFIG_PACKAGE_luci-app-fileassistant=y #文件助手
+# CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
+# CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
+# CONFIG_PACKAGE_luci-app-wrtbwmon=y #实时流量监测
+# CONFIG_PACKAGE_luci-app-xlnetacc=y #迅雷快鸟
+# CONFIG_PACKAGE_luci-app-turboacc=y #Turbo ACC 网络加速
+# CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_flow-offload=y
+# CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_bbr-cca=y
+# CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_dnsforwarder=y
+# CONFIG_PACKAGE_luci-app-arpbind=y #IP/MAC绑定
+# CONFIG_PACKAGE_luci-app-jd-dailybonus=y #京东签到服务
+# CONFIG_PACKAGE_luci-app-adblock=y #ADB广告过滤
+# CONFIG_PACKAGE_luci-app-baidupcs-web=y #百度网盘管理
+# CONFIG_PACKAGE_luci-app-fileassistant=y #文件助手
 EOF
 
 # 常用LuCI插件:
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
-CONFIG_PACKAGE_luci-app-webadmin=y #Web管理页面设置
-CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
-CONFIG_PACKAGE_luci-app-qos-gargoyle=y #Gargoyle QoS流控
-CONFIG_PACKAGE_luci-app-filebrowser=y #文件浏览器
-CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
-CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
-CONFIG_PACKAGE_luci-app-frps=y #Frp内网穿透服务器
-CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
+# CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
+# CONFIG_PACKAGE_luci-app-webadmin=y #Web管理页面设置
+# CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
+# CONFIG_PACKAGE_luci-app-qos-gargoyle=y #Gargoyle QoS流控
+# CONFIG_PACKAGE_luci-app-filebrowser=y #文件浏览器
+# CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
+# CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
+# CONFIG_PACKAGE_luci-app-frps=y #Frp内网穿透服务器
+# CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
+# CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
+# CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
+# CONFIG_PACKAGE_luci-app-vsftpd=y #FTP服务器
+# CONFIG_PACKAGE_luci-app-timewol=y #管控：MAC过滤计划上网重启等
+# CONFIG_PACKAGE_luci-app-webrestriction=y #访问限制
+# CONFIG_PACKAGE_luci-app-weburl=y #网址过滤
+# CONFIG_PACKAGE_luci-app-zerotier=y #ZeroTier内网穿透
+# CONFIG_PACKAGE_luci-app-accesscontrol=y #访问时间控制
+# CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
+# CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
 # CONFIG_PACKAGE_luci-app-softethervpn is not set #SoftEtherVPN服务器
 # CONFIG_PACKAGE_luci-app-softethervpn5 is not set #SoftEtherVPN服务器
-CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
-CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
-CONFIG_PACKAGE_luci-app-vsftpd=y #FTP服务器
-CONFIG_PACKAGE_luci-app-timewol=y #管控：MAC过滤计划上网重启等
-CONFIG_PACKAGE_luci-app-webrestriction=y #访问限制
-CONFIG_PACKAGE_luci-app-weburl=y #网址过滤
-CONFIG_PACKAGE_luci-app-zerotier=y #ZeroTier内网穿透
-CONFIG_PACKAGE_luci-app-accesscontrol=y #访问时间控制
-CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
-CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
 # CONFIG_PACKAGE_luci-app-netdata=y #Netdata实时监控(图表)
 EOF
 
