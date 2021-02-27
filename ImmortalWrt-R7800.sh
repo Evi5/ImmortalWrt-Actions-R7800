@@ -67,14 +67,14 @@ CONFIG_PACKAGE_kmod-nls-iso8859-1=y
 CONFIG_PACKAGE_block-mount=y
 EOF
 
-# smaba4支持
-cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-samba=n
-CONFIG_PACKAGE_luci-app-samba4=y
-CONFIG_PACKAGE_samba4-server=y
-CONFIG_PACKAGE_luci-i18n-samba4-zh-cn=y
-CONFIG_PACKAGE_samba4-client=y
-EOF
+# smaba4支持, luci-app-samba内置与smaba4冲突
+# cat >> .config <<EOF
+# CONFIG_PACKAGE_luci-app-samba=n
+# CONFIG_PACKAGE_luci-app-samba4=y
+# CONFIG_PACKAGE_samba4-server=y
+# CONFIG_PACKAGE_luci-i18n-samba4-zh-cn=y
+# CONFIG_PACKAGE_samba4-client=y
+# EOF
 
 # svn支持
 cat >> .config <<EOF
@@ -94,7 +94,7 @@ CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_Obfs=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_Plugin=y
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
 EOF
 
 # Passwall插件
